@@ -138,13 +138,15 @@
         /* --- MAP CONTAINER --- */
         .map-frame {
             width: 100%;
-            height: 100%;
+            max-width: 640px; /* Enforce 640px width max */
+            aspect-ratio: 4 / 3; /* Enforce 640x480 Ratio */
             border-radius: 16px;
             overflow: hidden;
             border: 8px solid white;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             background-color: #e2e8f0;
             position: relative;
+            margin: 0 auto; /* Center vertically/horizontally */
         }
         .map-frame img {
             width: 100%;
@@ -218,45 +220,67 @@
         </div>
     </div>
 
-    <!-- 2. EXECUTIVE SUMMARY (DATA VIZ) -->
+    <!-- 2A. EXECUTIVE SUMMARY: KEY HIGHLIGHTS -->
     <div class="slide">
-        <div class="content-card p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="flex flex-col justify-center">
-                <h2 class="font-display text-4xl text-brand-dark mb-4">Executive Summary</h2>
-                
-                <!-- Key Points List -->
-                <ul class="text-slate-600 mb-6 text-xs md:text-sm leading-relaxed space-y-2 list-disc pl-4 marker:text-brand-secondary">
-                    <li>The overall private housing supply in the GLS programme for 1H2026 will be sustained at a high level of around <strong>9,200 units</strong>, similar to that in 2H2025.</li>
-                    <li>The supply includes <strong>4,575</strong> private residential units to be tendered out via the Confirmed List. This is 43% higher than the average Confirmed List supply of around 3,190 units per GLS programme from 2021 to 2023. An additional <strong>4,610</strong> units will be made available via the Reserve List.</li>
-                    <li>To advance the development of Jurong Lake District (JLD), the Government will sell the Master Developer site as separate parcels, starting with the release of a White site at Town Hall Link on the Reserve List. This approach was decided following a review of property market conditions and extensive industry engagements.</li>
-                    <li>The Government will continue to closely monitor economic and property market conditions, calibrating the release of GLS supply to ensure a stable and sustainable housing market.</li>
-                </ul>
-
-                <!-- Stats Grid -->
-                <div class="grid grid-cols-2 gap-4 mb-4">
-                    <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 text-center">
-                        <div class="text-2xl font-black text-brand-primary">4,575</div>
-                        <div class="text-xs font-bold text-slate-500 uppercase">Confirmed Units</div>
-                    </div>
-                    <div class="bg-yellow-50 p-3 rounded-xl border border-yellow-100 text-center">
-                        <div class="text-2xl font-black text-yellow-600">4,610</div>
-                        <div class="text-xs font-bold text-slate-500 uppercase">Reserve Units</div>
-                    </div>
+        <div class="content-card p-8 flex flex-col justify-center">
+            <h2 class="font-display text-4xl text-brand-dark mb-8 text-center md:text-left">Key Highlights</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                <!-- Left: Text Points -->
+                <div class="w-full md:w-2/3 pr-0 md:pr-12">
+                    <ul class="text-slate-600 text-sm md:text-base leading-relaxed space-y-4 list-disc pl-4 marker:text-brand-secondary">
+                        <li>The overall private housing supply in the GLS programme for 1H2026 will be sustained at a high level of around <strong>9,200 units</strong>, similar to that in 2H2025.</li>
+                        <li>The supply includes <strong>4,575</strong> private residential units to be tendered out via the Confirmed List. This is 43% higher than the average Confirmed List supply of around 3,190 units per GLS programme from 2021 to 2023. An additional <strong>4,610</strong> units will be made available via the Reserve List.</li>
+                        <li>To advance the development of Jurong Lake District (JLD), the Government will sell the Master Developer site as separate parcels, starting with the release of a White site at Town Hall Link on the Reserve List. This approach was decided following a review of property market conditions and extensive industry engagements.</li>
+                        <li>The Government will continue to closely monitor economic and property market conditions, calibrating the release of GLS supply to ensure a stable and sustainable housing market.</li>
+                    </ul>
                 </div>
-                <!-- Total Stats Banner -->
-                <div class="bg-brand-dark p-3 rounded-xl border border-slate-700 text-center text-white">
-                    <div class="text-3xl font-black text-brand-secondary">9,185</div>
-                    <div class="text-xs font-bold text-slate-400 uppercase">Total Residential Units</div>
+
+                <!-- Right: Stats Box -->
+                <div class="w-full md:w-1/3 flex flex-col gap-4">
+                    <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 text-center shadow-sm">
+                        <div class="text-4xl font-black text-brand-primary">4,575</div>
+                        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Confirmed Units</div>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-100 text-center shadow-sm">
+                        <div class="text-4xl font-black text-yellow-600">4,610</div>
+                        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Reserve Units</div>
+                    </div>
+                    <div class="bg-brand-dark p-6 rounded-xl border border-slate-700 text-center text-white shadow-lg mt-2">
+                        <div class="text-5xl font-black text-brand-secondary">9,185</div>
+                        <div class="text-xs font-bold text-slate-400 uppercase mt-1">Total Residential Units</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="bg-white rounded-xl p-4 shadow-inner flex items-center justify-center relative">
-                <div class="chart-container w-full h-full max-h-[600px]">
+            <!-- Mascot: Bottom Right, safe zone -->
+            <div class="mascot-target" data-slide="summary-text"></div>
+            <div class="footer-note">Created by: Kar Loon | Contact: +65 91860119</div>
+        </div>
+    </div>
+
+    <!-- 2B. EXECUTIVE SUMMARY: SUPPLY BREAKDOWN -->
+    <div class="slide">
+        <!-- Added md:pr-32 to header container to reserve space for mascot -->
+        <div class="content-card p-8 flex flex-col h-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6 md:pr-32 relative z-20">
+                <h2 class="font-display text-4xl text-brand-dark text-center md:text-left">Supply Breakdown</h2>
+                <!-- Legend -->
+                <div class="flex gap-4 mt-4 md:mt-0 text-xs md:text-sm font-bold uppercase">
+                    <div class="flex items-center"><div class="w-4 h-4 bg-[#2563EB] rounded mr-2"></div> Confirmed List</div>
+                    <div class="flex items-center"><div class="w-4 h-4 bg-[#FACC15] rounded mr-2"></div> Reserve List</div>
+                    <div class="flex items-center"><div class="w-4 h-4 bg-[#9333EA] rounded mr-2"></div> White Site</div>
+                </div>
+            </div>
+            
+            <div class="flex-grow bg-white rounded-xl p-4 shadow-inner flex items-center justify-center relative w-full h-[60vh]">
+                <div class="chart-container w-full h-full">
                     <canvas id="summaryChart"></canvas>
                 </div>
-                <!-- Mascot -->
-                <div class="mascot-target" data-slide="summary"></div>
             </div>
+            
+            <!-- Mascot: Top Right of Slide (Outside Chart) -->
+            <div class="mascot-target" data-slide="summary-chart"></div>
             <div class="footer-note">Created by: Kar Loon | Contact: +65 91860119</div>
         </div>
     </div>
@@ -283,10 +307,10 @@
             { name: "Cross Street", type: "Residential", list: "Reserve", units: 315, area: "0.23 ha", date: "Available", img: "Cross Street.jpg", color: "yellow" },
             { name: "Morrison Lane", type: "Residential", list: "Reserve", units: 200, area: "0.66 ha", date: "Feb 2026", img: "Morrison Lane.jpg", color: "yellow" },
             { name: "Kitchener Link", type: "Residential", list: "Reserve", units: 135, area: "0.39 ha", date: "Jun 2026", img: "Kitchener Link.jpg", color: "yellow" },
+            { name: "Telok Ayer Street", type: "Hotel / Residential", list: "Reserve", units: 135, area: "0.42 ha", date: "Dec 2025", img: "Telok Ayer Street.jpg", color: "yellow" },
             { name: "Marina Gardens Crescent", type: "White Site", list: "Reserve", units: 775, area: "1.73 ha", date: "Available", img: "Marina Gardens White Site.jpg", color: "purple" },
             { name: "Woodlands Avenue 2", type: "White Site", list: "Reserve", units: 440, area: "2.75 ha", date: "Available", img: "woodlands avenue 2.jpg", color: "purple" },
-            { name: "Town Hall Link", type: "White Site", list: "Reserve", units: 1200, area: "3.72 ha", date: "Mar 2026", img: "town hall link.jpg", color: "purple" },
-            { name: "Telok Ayer Street", type: "Hotel / Residential", list: "Reserve", units: 135, area: "0.42 ha", date: "Dec 2025", img: "Telok Ayer Street.jpg", color: "yellow" }
+            { name: "Town Hall Link", type: "White Site", list: "Reserve", units: 1200, area: "3.72 ha", date: "Mar 2026", img: "town hall link.jpg", color: "purple" }
         ];
 
         // Generate Slides
@@ -329,8 +353,8 @@
                     </div>
 
                     <!-- Map Side -->
-                    <div class="w-full md:w-2/3 relative z-10">
-                        <div class="map-frame h-full min-h-[300px]">
+                    <div class="w-full md:w-2/3 relative z-10 flex flex-col justify-center">
+                        <div class="map-frame">
                             <div class="map-placeholder">
                                 <i class="fas fa-map-marked-alt text-4xl mb-2"></i>
                             </div>
@@ -364,29 +388,51 @@
     <script>
         // 1. CHART.JS CONFIGURATION (All 19 Sites)
         document.addEventListener('DOMContentLoaded', function() {
+            // Custom Plugin to draw labels on top of bars
+            const valueLabelPlugin = {
+                id: 'valueLabelPlugin',
+                afterDatasetsDraw(chart, args, options) {
+                    const { ctx } = chart;
+                    ctx.save();
+                    chart.data.datasets.forEach((dataset, i) => {
+                        const meta = chart.getDatasetMeta(i);
+                        meta.data.forEach((bar, index) => {
+                            const value = dataset.data[index];
+                            if (value !== null && value !== undefined) {
+                                ctx.fillStyle = '#64748b'; // Slate-500
+                                ctx.font = 'bold 10px Inter'; // Small, legible font
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'bottom';
+                                ctx.fillText(value.toLocaleString(), bar.x, bar.y - 4);
+                            }
+                        });
+                    });
+                    ctx.restore();
+                }
+            };
+
             const ctx = document.getElementById('summaryChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
+                plugins: [valueLabelPlugin], // Register the plugin
                 data: {
                     labels: [
                         'Holland Plain', 'River Valley', 'Peck Hay', 'Berlayar', 'Canberra (EC)', 
                         'Upp Changi', 'Lor Puntong', 'Sembawang (EC)', 'Bayshore',
                         'Marina Gdns Ln', 'Media Cir', 'Media Cir B', 'Cross St', 
-                        'Morrison Ln', 'Kitchener', 'Marina Gdns Cres', 'Woodlands', 'Town Hall', 'Telok Ayer'
+                        'Morrison Ln', 'Kitchener', 'Telok Ayer', 'Marina Gdns Cres', 'Woodlands', 'Town Hall'
                     ],
                     datasets: [{
                         label: 'Est. Units',
                         data: [
                             280, 470, 315, 415, 185, 1040, 140, 450, 1280, // Confirmed
-                            390, 520, 500, 315, 200, 135, // Reserve Resi
-                            775, 440, 1200, // Reserve White
-                            135 // Reserve Hotel/Resi
+                            390, 520, 500, 315, 200, 135, 135, // Reserve Resi + Telok Ayer
+                            775, 440, 1200 // Reserve White
                         ],
                         backgroundColor: [
                             '#2563EB', '#2563EB', '#2563EB', '#2563EB', '#2563EB', '#2563EB', '#2563EB', '#2563EB', '#2563EB', // Blue
-                            '#FACC15', '#FACC15', '#FACC15', '#FACC15', '#FACC15', '#FACC15', // Yellow
-                            '#9333EA', '#9333EA', '#9333EA', // Purple
-                            '#FACC15' // Yellow (Reserve)
+                            '#FACC15', '#FACC15', '#FACC15', '#FACC15', '#FACC15', '#FACC15', '#FACC15', // Yellow
+                            '#9333EA', '#9333EA', '#9333EA' // Purple
                         ],
                         borderRadius: 4
                     }]
@@ -410,6 +456,11 @@
                     scales: { 
                         y: { beginAtZero: true },
                         x: { ticks: { font: { size: 10 }, maxRotation: 45, minRotation: 45 } } 
+                    },
+                    layout: {
+                        padding: {
+                            top: 25 // Ensure labels don't get cut off
+                        }
                     }
                 }
             });
@@ -427,16 +478,41 @@
                 wrapper.className = 'mascot-wrapper';
                 wrapper.innerHTML = mascotHTML;
 
-                // Randomize Position
-                const sideX = Math.random() > 0.5 ? 'left' : 'right';
-                const sideY = Math.random() > 0.5 ? 'top' : 'bottom';
-                wrapper.style.position = 'absolute';
-                wrapper.style[sideX] = (Math.random() * 20 - 10) + '%';
-                wrapper.style[sideY] = (Math.random() * 20 - 5) + '%'; 
-                
-                const rot = Math.floor(Math.random() * 40) - 20;
-                wrapper.style.transform = `rotate(${rot}deg) scale(${0.8 + Math.random() * 0.4})`;
-                wrapper.style.zIndex = Math.random() > 0.3 ? '30' : '5';
+                // Position Logic
+                if (target.dataset.slide === 'summary-text') {
+                    // Safe spot: Bottom Right corner of text slide
+                    wrapper.style.position = 'absolute';
+                    wrapper.style.bottom = '20px';
+                    wrapper.style.right = '40px';
+                    wrapper.style.transform = 'scale(0.8) rotate(-10deg)';
+                    wrapper.style.zIndex = '30';
+                } 
+                else if (target.dataset.slide === 'summary-chart') {
+                    // Safe spot: Top Right corner of chart slide (in header area)
+                    wrapper.style.position = 'absolute';
+                    wrapper.style.top = '10px';
+                    wrapper.style.right = '10px';
+                    wrapper.style.transform = 'scale(0.8) rotate(15deg)';
+                    wrapper.style.zIndex = '30';
+                }
+                else if (target.dataset.slide === 'end') {
+                    // Center for ending
+                    wrapper.style.position = 'relative';
+                    wrapper.style.transform = 'scale(1.5)';
+                    wrapper.style.zIndex = '30';
+                }
+                else {
+                    // Randomize Position for site slides
+                    const sideX = Math.random() > 0.5 ? 'left' : 'right';
+                    const sideY = Math.random() > 0.5 ? 'top' : 'bottom';
+                    wrapper.style.position = 'absolute';
+                    wrapper.style[sideX] = (Math.random() * 20 - 10) + '%';
+                    wrapper.style[sideY] = (Math.random() * 20 - 5) + '%'; 
+                    
+                    const rot = Math.floor(Math.random() * 40) - 20;
+                    wrapper.style.transform = `rotate(${rot}deg) scale(${0.8 + Math.random() * 0.4})`;
+                    wrapper.style.zIndex = Math.random() > 0.3 ? '30' : '5';
+                }
 
                 // Random Poses
                 const armL = wrapper.querySelector('.arm-l');
