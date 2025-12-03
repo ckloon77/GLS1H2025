@@ -223,20 +223,33 @@
         <div class="content-card p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="flex flex-col justify-center">
                 <h2 class="font-display text-4xl text-brand-dark mb-4">Executive Summary</h2>
-                <p class="text-slate-600 mb-6 leading-relaxed">
-                    The 1H2026 GLS Programme introduces a significant supply of private housing. The <span class="font-bold text-brand-primary">Confirmed List</span> offers immediate launch sites, while the <span class="font-bold text-yellow-600">Reserve List</span> provides flexibility for developers to trigger sites based on market demand.
-                </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                        <div class="text-3xl font-black text-brand-primary">4,575</div>
-                        <div class="text-sm font-bold text-slate-500 uppercase">Confirmed Units</div>
+                
+                <!-- Key Points List -->
+                <ul class="text-slate-600 mb-6 text-xs md:text-sm leading-relaxed space-y-2 list-disc pl-4 marker:text-brand-secondary">
+                    <li>The overall private housing supply in the GLS programme for 1H2026 will be sustained at a high level of around <strong>9,200 units</strong>, similar to that in 2H2025.</li>
+                    <li>The supply includes <strong>4,575</strong> private residential units to be tendered out via the Confirmed List. This is 43% higher than the average Confirmed List supply of around 3,190 units per GLS programme from 2021 to 2023. An additional <strong>4,610</strong> units will be made available via the Reserve List.</li>
+                    <li>To advance the development of Jurong Lake District (JLD), the Government will sell the Master Developer site as separate parcels, starting with the release of a White site at Town Hall Link on the Reserve List. This approach was decided following a review of property market conditions and extensive industry engagements.</li>
+                    <li>The Government will continue to closely monitor economic and property market conditions, calibrating the release of GLS supply to ensure a stable and sustainable housing market.</li>
+                </ul>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 text-center">
+                        <div class="text-2xl font-black text-brand-primary">4,575</div>
+                        <div class="text-xs font-bold text-slate-500 uppercase">Confirmed Units</div>
                     </div>
-                    <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-100">
-                        <div class="text-3xl font-black text-yellow-600">4,745</div>
-                        <div class="text-sm font-bold text-slate-500 uppercase">Reserve Units</div>
+                    <div class="bg-yellow-50 p-3 rounded-xl border border-yellow-100 text-center">
+                        <div class="text-2xl font-black text-yellow-600">4,610</div>
+                        <div class="text-xs font-bold text-slate-500 uppercase">Reserve Units</div>
                     </div>
                 </div>
+                <!-- Total Stats Banner -->
+                <div class="bg-brand-dark p-3 rounded-xl border border-slate-700 text-center text-white">
+                    <div class="text-3xl font-black text-brand-secondary">9,185</div>
+                    <div class="text-xs font-bold text-slate-400 uppercase">Total Residential Units</div>
+                </div>
             </div>
+            
             <div class="bg-white rounded-xl p-4 shadow-inner flex items-center justify-center relative">
                 <div class="chart-container w-full h-full max-h-[600px]">
                     <canvas id="summaryChart"></canvas>
