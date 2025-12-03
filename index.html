@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700;900&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700;900&family=Patrick+Hand&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -23,9 +23,9 @@
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
-                        playful: ['Patrick Hand', 'cursive']
+                        sans: ['Inter', 'Noto Sans SC', 'sans-serif'],
+                        display: ['Montserrat', 'Noto Sans SC', 'sans-serif'],
+                        playful: ['Patrick Hand', 'Noto Sans SC', 'cursive']
                     }
                 }
             }
@@ -55,7 +55,6 @@
             padding: 40px 20px;
             box-sizing: border-box;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            /* Important: slide clips the mascot when he peeks from edge */
             overflow: hidden; 
             z-index: 1;
         }
@@ -68,7 +67,7 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             overflow: hidden;
             position: relative;
-            z-index: 20; /* Card Base Layer */
+            z-index: 20; 
             min-height: 700px;
             display: flex;
             flex-direction: column;
@@ -99,7 +98,6 @@
             opacity: 0;
             animation: mascotPopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             animation-delay: 0.5s;
-            /* Ensure mascot is above card background so he is seen */
             z-index: 30; 
         }
 
@@ -118,8 +116,8 @@
             width: 240px;
             text-align: center;
             color: #334155;
-            font-family: 'Patrick Hand', cursive;
-            font-size: 22px;
+            font-family: 'Patrick Hand', 'Noto Sans SC', cursive;
+            font-size: 20px;
             font-weight: 400;
             line-height: 1.3;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
@@ -190,6 +188,72 @@
             position: absolute; bottom: 10px; width: 100%; text-align: center;
             font-size: 0.75rem; color: #94a3b8; font-weight: 600; z-index: 100;
         }
+
+        /* Toggle Button */
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        .lang-toggle:hover { background: rgba(255,255,255,0.2); }
+
+        /* PRE Banner Style - Lower Right Corner */
+        .pre-badge-container {
+            position: relative;
+            overflow: hidden;
+        }
+        /* Corner Triangle */
+        .pre-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 40px 40px; /* Size of the triangle */
+            border-color: transparent transparent #dc2626 transparent; /* Red */
+            z-index: 10;
+        }
+        /* Text inside the triangle */
+        .pre-badge-text {
+            position: absolute;
+            bottom: 3px;
+            right: 2px;
+            color: white;
+            font-size: 9px;
+            font-weight: 900;
+            z-index: 11;
+            font-family: sans-serif;
+            transform: rotate(0deg);
+        }
+
+        /* PRIVATE (Blue) Triangle for EC Slides */
+        .private-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 50px 50px; /* Slightly larger for word Private */
+            border-color: transparent transparent #2563EB transparent; /* Brand Blue */
+            z-index: 10;
+        }
+        .private-badge-text {
+            position: absolute; bottom: 3px; right: 2px; color: white; font-size: 8px; font-weight: 900; z-index: 11; font-family: sans-serif;
+        }
+
     </style>
 </head>
 <body>
@@ -197,6 +261,9 @@
     <!-- 1. COVER PAGE -->
     <div class="slide">
         <div class="content-card !bg-[#0F172A] !text-white overflow-hidden flex flex-col justify-center items-center relative">
+            <!-- Lang Toggle -->
+            <button class="lang-toggle" onclick="toggleLanguage()">🌐 EN / 中文</button>
+
             <div class="absolute inset-0 opacity-20">
                 <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
                 <div class="absolute top-0 right-0 w-96 h-96 bg-brand-primary rounded-full blur-[120px]"></div>
@@ -205,13 +272,13 @@
 
             <div class="relative z-10 text-center px-4 reveal mb-24">
                 <div class="inline-block px-4 py-1 border border-cyan-400 rounded-full text-cyan-400 text-sm font-bold tracking-widest mb-6 animate-pulse">
-                    MARKET UPDATE
+                    <span data-key="market_update">MARKET UPDATE</span>
                 </div>
                 <h1 class="font-display text-4xl sm:text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-blue-400 mb-6 drop-shadow-2xl leading-tight">
-                    1H2026<br>GLS PROGRAMME
+                    <span data-key="gls_title">1H2026<br>GLS PROGRAMME</span>
                 </h1>
                 <p class="font-sans text-lg sm:text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
-                    A Comprehensive Guide to Residential & Mixed Development Sites
+                    <span data-key="gls_subtitle">A Comprehensive Guide to Residential & Mixed Development Sites</span>
                 </p>
             </div>
 
@@ -232,33 +299,37 @@
     <!-- 2A. EXECUTIVE SUMMARY: KEY HIGHLIGHTS -->
     <div class="slide">
         <div class="content-card p-8 flex flex-col justify-center">
-            <h2 class="font-display text-4xl text-brand-dark mb-8 text-center md:text-left reveal">Key Highlights</h2>
+            <h2 class="font-display text-4xl text-brand-dark mb-8 text-center md:text-left reveal">
+                <span data-key="highlights_title">Key Highlights</span>
+            </h2>
             <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
                 <div class="w-full md:w-2/3 pr-0 md:pr-12 reveal delay-100">
                     <ul class="text-slate-600 text-sm md:text-base leading-relaxed space-y-4 list-disc pl-4 marker:text-brand-secondary">
-                        <li>The overall private housing supply in the GLS programme for 1H2026 will be sustained at a high level of around <strong>9,200 units</strong>, similar to that in 2H2025.</li>
-                        <li>The supply includes <strong>4,575</strong> private residential units to be tendered out via the Confirmed List. This is 43% higher than the average Confirmed List supply of around 3,190 units per GLS programme from 2021 to 2023. An additional <strong>4,610</strong> units will be made available via the Reserve List.</li>
-                        <li>To advance the development of Jurong Lake District (JLD), the Government will sell the Master Developer site as separate parcels, starting with the release of a White site at Town Hall Link on the Reserve List. This approach was decided following a review of property market conditions and extensive industry engagements.</li>
-                        <li>The Government will continue to closely monitor economic and property market conditions, calibrating the release of GLS supply to ensure a stable and sustainable housing market.</li>
+                        <li data-key="highlight_1">The overall private housing supply in the GLS programme for 1H2026 will be sustained at a high level of around <strong>9,200 units</strong>, similar to that in 2H2025.</li>
+                        <li data-key="highlight_2">The supply includes <strong>4,575</strong> private residential units to be tendered out via the Confirmed List. This is 43% higher than the average Confirmed List supply of around 3,190 units per GLS programme from 2021 to 2023. An additional <strong>4,610</strong> units will be made available via the Reserve List.</li>
+                        <li data-key="highlight_3">To advance the development of Jurong Lake District (JLD), the Government will sell the Master Developer site as separate parcels, starting with the release of a White site at Town Hall Link on the Reserve List. This approach was decided following a review of property market conditions and extensive industry engagements.</li>
+                        <li data-key="highlight_4">The Government will continue to closely monitor economic and property market conditions, calibrating the release of GLS supply to ensure a stable and sustainable housing market.</li>
                     </ul>
                 </div>
                 <div class="w-full md:w-1/3 flex flex-col gap-4 reveal delay-200">
                     <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 text-center shadow-sm">
                         <div class="text-4xl font-black text-brand-primary">4,575</div>
-                        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Confirmed Units</div>
+                        <div class="text-xs font-bold text-slate-500 uppercase mt-1" data-key="confirmed_units">Confirmed Units</div>
                     </div>
                     <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-100 text-center shadow-sm">
                         <div class="text-4xl font-black text-yellow-600">4,610</div>
-                        <div class="text-xs font-bold text-slate-500 uppercase mt-1">Reserve Units</div>
+                        <div class="text-xs font-bold text-slate-500 uppercase mt-1" data-key="reserve_units">Reserve Units</div>
                     </div>
                     <div class="bg-brand-dark p-6 rounded-xl border border-slate-700 text-center text-white shadow-lg mt-2">
                         <div class="text-5xl font-black text-brand-secondary">9,185</div>
-                        <div class="text-xs font-bold text-slate-400 uppercase mt-1">Total Residential Units</div>
+                        <div class="text-xs font-bold text-slate-400 uppercase mt-1" data-key="total_units">Total Residential Units</div>
                     </div>
                 </div>
             </div>
             <div class="mascot-target" data-slide="summary-text"></div>
-            <div class="footer-note">Created by: Kar Loon | Contact: +65 91860119</div>
+            <div class="footer-note">
+                <span data-key="footer">Created by: Kar Loon | Contact: +65 91860119</span>
+            </div>
         </div>
     </div>
 
@@ -266,11 +337,13 @@
     <div class="slide">
         <div class="content-card p-8 flex flex-col h-auto">
             <div class="flex flex-col md:flex-row justify-between items-center mb-6 md:pr-32 relative z-20 reveal">
-                <h2 class="font-display text-4xl text-brand-dark text-center md:text-left">Supply Breakdown</h2>
+                <h2 class="font-display text-4xl text-brand-dark text-center md:text-left">
+                    <span data-key="supply_breakdown">Supply Breakdown</span>
+                </h2>
                 <div class="flex gap-4 mt-4 md:mt-0 text-xs md:text-sm font-bold uppercase">
-                    <div class="flex items-center"><div class="w-4 h-4 bg-[#2563EB] rounded mr-2"></div> Confirmed List</div>
-                    <div class="flex items-center"><div class="w-4 h-4 bg-[#FACC15] rounded mr-2"></div> Reserve List</div>
-                    <div class="flex items-center"><div class="w-4 h-4 bg-[#9333EA] rounded mr-2"></div> White Site</div>
+                    <div class="flex items-center"><div class="w-4 h-4 bg-[#2563EB] rounded mr-2"></div> <span data-key="legend_confirmed">Confirmed List</span></div>
+                    <div class="flex items-center"><div class="w-4 h-4 bg-[#FACC15] rounded mr-2"></div> <span data-key="legend_reserve">Reserve List</span></div>
+                    <div class="flex items-center"><div class="w-4 h-4 bg-[#9333EA] rounded mr-2"></div> <span data-key="legend_white">White Site</span></div>
                 </div>
             </div>
             <div class="flex-grow bg-white rounded-xl p-4 shadow-inner flex items-center justify-center relative w-full h-[60vh] reveal delay-100">
@@ -279,7 +352,9 @@
                 </div>
             </div>
             <div class="mascot-target" data-slide="summary-chart"></div>
-            <div class="footer-note">Created by: Kar Loon | Contact: +65 91860119</div>
+            <div class="footer-note">
+                <span data-key="footer">Created by: Kar Loon | Contact: +65 91860119</span>
+            </div>
         </div>
     </div>
 
@@ -290,40 +365,291 @@
     <div class="slide">
         <div class="content-card !bg-gradient-to-br !from-brand-primary !to-brand-secondary !text-white flex flex-col justify-center items-center text-center">
             <div class="mascot-target relative z-30 mb-8" data-slide="end"></div>
-            <h2 class="font-display text-5xl md:text-7xl font-black mb-6 drop-shadow-lg reveal">STAY TUNED!</h2>
-            <p class="text-2xl font-light text-blue-100 max-w-xl reveal delay-100">For more updates and detailed analysis on the Singapore Property Market.</p>
+            <h2 class="font-display text-5xl md:text-7xl font-black mb-6 drop-shadow-lg reveal">
+                <span data-key="stay_tuned">STAY TUNED!</span>
+            </h2>
+            <p class="text-2xl font-light text-blue-100 max-w-xl reveal delay-100">
+                <span data-key="closing_sub">For more updates and detailed analysis on the Singapore Property Market.</span>
+            </p>
             <div class="mt-12 bg-white/10 backdrop-blur-md px-8 py-4 rounded-2xl border border-white/20 reveal delay-200">
                 <p class="font-bold">Kar Loon</p>
                 <p class="opacity-80">+65 91860119</p>
             </div>
-            <div class="footer-note text-blue-200">Created by: Kar Loon | Contact: +65 91860119</div>
+            <div class="footer-note text-blue-200">
+                <span data-key="footer">Created by: Kar Loon | Contact: +65 91860119</span>
+            </div>
         </div>
     </div>
 
     <!-- SCRIPTS -->
     <script>
+        // --- TRANSLATION DATA ---
+        const translations = {
+            en: {
+                market_update: "MARKET UPDATE",
+                gls_title: "1H2026<br>GLS PROGRAMME",
+                gls_subtitle: "A Comprehensive Guide to Residential & Mixed Development Sites",
+                footer: "Created by: Kar Loon | Contact: +65 91860119",
+                highlights_title: "Key Highlights",
+                highlight_1: "The overall private housing supply in the GLS programme for 1H2026 will be sustained at a high level of around <strong>9,200 units</strong>, similar to that in 2H2025.",
+                highlight_2: "The supply includes <strong>4,575</strong> private residential units to be tendered out via the Confirmed List. This is 43% higher than the average Confirmed List supply of around 3,190 units per GLS programme from 2021 to 2023. An additional <strong>4,610</strong> units will be made available via the Reserve List.",
+                highlight_3: "To advance the development of Jurong Lake District (JLD), the Government will sell the Master Developer site as separate parcels, starting with the release of a White site at Town Hall Link on the Reserve List. This approach was decided following a review of property market conditions and extensive industry engagements.",
+                highlight_4: "The Government will continue to closely monitor economic and property market conditions, calibrating the release of GLS supply to ensure a stable and sustainable housing market.",
+                confirmed_units: "Confirmed Units",
+                reserve_units: "Reserve Units",
+                total_units: "Total Residential Units",
+                supply_breakdown: "Supply Breakdown",
+                legend_confirmed: "Confirmed List",
+                legend_reserve: "Reserve List",
+                legend_white: "White Site",
+                stay_tuned: "STAY TUNED!",
+                closing_sub: "For more updates and detailed analysis on the Singapore Property Market.",
+                mascot_speech: "Hi I am a mascot. My name is Now Choong. I like to play hide-n-seek. Spot me. Wink!",
+                lbl_units: "Est. Units",
+                lbl_area: "Site Area",
+                lbl_launch: "Est. Launch",
+                lbl_launching_soon: "Nearby Land Trans. (PSF PPR) - Launching Soon",
+                lbl_immediate: "Nearby New Launches Avail for Immediate Booking",
+                btn_price: "Check Current Price List",
+                note_price: "Note: Prices shown are Land Price (psf ppr)"
+            },
+            zh: {
+                market_update: "市场快讯",
+                gls_title: "2026年上半年<br>政府售地计划",
+                gls_subtitle: "住宅及综合发展用地综合指南",
+                footer: "创作者：Kar Loon | 联系方式：+65 91860119",
+                highlights_title: "主要亮点",
+                highlight_1: "2026年上半年政府售地计划（GLS）中的整体私人住宅供应量将保持在约 <strong>9,200 个单位</strong>的高水平，与2025年下半年相似。",
+                highlight_2: "供应包括通过正选名单招标的 <strong>4,575</strong> 个私人住宅单位。这比2021年至2023年期间每期GLS计划平均约3,190个单位的正选名单供应量高出43%。另有 <strong>4,610</strong> 个单位将通过备售名单提供。",
+                highlight_3: "为推进裕廊湖区（JLD）的发展，政府将把主开发商地块分拆出售，首先在备售名单上推出位于 Town Hall Link 的白色用地。这一做法是在审查房地产市场状况并进行广泛的行业接触后决定的。",
+                highlight_4: "政府将继续密切监测经济和房地产市场状况，调整GLS供应的发布，以确保房地产市场的稳定和可持续发展。",
+                confirmed_units: "正选名单单位",
+                reserve_units: "备售名单单位",
+                total_units: "住宅单位总数",
+                supply_breakdown: "供应细分",
+                legend_confirmed: "正选名单",
+                legend_reserve: "备售名单",
+                legend_white: "白色用地",
+                stay_tuned: "敬请关注！",
+                closing_sub: "获取更多新加坡房地产市场的更新和详细分析。",
+                mascot_speech: "嗨，我是吉祥物。我叫 Now钟。我喜欢玩捉迷藏。快来找我吧，眨眼！",
+                lbl_units: "预计单位",
+                lbl_area: "占地面积",
+                lbl_launch: "预计推出",
+                lbl_launching_soon: "附近土地交易 (每平方英尺容积率价格) - 即将推出",
+                lbl_immediate: "附近可立即预订的新楼盘",
+                btn_price: "查看最新价格表",
+                note_price: "注：显示价格为土地价格 (每平方英尺容积率)"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            const t = translations[currentLang];
+            
+            // Update Static Elements
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if(t[key]) el.innerHTML = t[key];
+            });
+
+            // Update Mascot Speech on Cover
+            const bubble = document.querySelector('.mascot-wrapper .speech-bubble');
+            if(bubble) bubble.innerText = t.mascot_speech;
+
+            // Update Labels in Generated Slides
+            document.querySelectorAll('.slide-label-units').forEach(el => el.innerText = t.lbl_units);
+            document.querySelectorAll('.slide-label-area').forEach(el => el.innerText = t.lbl_area);
+            document.querySelectorAll('.slide-label-launch').forEach(el => el.innerText = t.lbl_launch);
+            document.querySelectorAll('.slide-label-launching').forEach(el => el.innerText = t.lbl_launching_soon);
+            document.querySelectorAll('.slide-label-immediate').forEach(el => el.innerText = t.lbl_immediate);
+            document.querySelectorAll('.slide-label-note').forEach(el => el.innerText = t.note_price);
+            document.querySelectorAll('.slide-btn-price').forEach(el => el.innerText = t.btn_price);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // 1. GENERATE SITE SLIDES DYNAMICALLY
             const sites = [
-                { name: "Holland Plain", type: "Residential", list: "Confirmed", units: 280, area: "1.57 ha", date: "Feb 2026", img: "holland plain.jpg", color: "blue", c1n: "Holland Link (Jul 2025)", c1p: "$1,432", c2n: "Bukit Timah Rd (Nov 2025)", c2p: "$1,820" },
-                { name: "River Valley Green (Parcel C)", type: "Residential", list: "Confirmed", units: 470, area: "1.15 ha", date: "Apr 2026", img: "river valley green parcal c.jpg", color: "blue", c1n: "River Green (Jun 2024)", c1p: "$1,325", c2n: "Zion Road B (Aug 2024)", c2p: "$1,304" },
-                { name: "Peck Hay Road", type: "Residential", list: "Confirmed", units: 315, area: "0.55 ha", date: "Apr 2026", img: "Peck Hay Road.jpg", color: "blue", c1n: "Bukit Timah Rd (Nov 2025)", c1p: "$1,820", c2n: "Kopar at Newton (Jan 2019)", c2p: "$1,192" },
-                { name: "Berlayar Drive", type: "Residential", list: "Confirmed", units: 415, area: "2.54 ha", date: "May 2026", img: "berlayar drive.jpg", color: "blue", c1n: "Telok Blangah Rd (Nov 2025)", c1p: "$1,326", c2n: "Blossoms By The Park (Sep 2021)", c2p: "$1,246" },
-                { name: "Canberra Drive (EC)", type: "EC", list: "Confirmed", units: 185, area: "1.16 ha", date: "May 2026", img: "canberra drive EC.jpg", color: "blue", c1n: "Sembawang Rd EC (Sep 2025)", c1p: "$692", c2n: "Canberra Link (EC)", c2p: "$566" },
-                { name: "New Upper Changi Road", type: "Residential", list: "Confirmed", units: 1040, area: "3.16 ha", date: "May 2026", img: "New Upper Changi Road.jpg", color: "blue", c1n: "Bedok Rise (Nov 2025)", c1p: "$1,330", c2n: "Bayshore Road (Mar 2025)", c2p: "$1,388" },
-                { name: "Lorong Puntong", type: "Residential", list: "Confirmed", units: 140, area: "0.43 ha", date: "Jun 2026", img: "Lorong Puntong (Sin ming).jpg", color: "blue", c1n: "Chuan Grove (Jul 2025)", c1p: "$1,376", c2n: "Ang Mo Kio Ave 1", c2p: "$1,118" },
-                { name: "Sembawang Drive (EC)", type: "EC", list: "Confirmed", units: 450, area: "1.29 ha", date: "Jun 2026", img: "sembawang drive EC.jpg", color: "blue", c1n: "Sembawang Rd EC (Sep 2025)", c1p: "$692", c2n: "Woodlands Dr 17 EC (Aug 2025)", c2p: "$782" },
-                { name: "Bayshore Drive", type: "Mixed Use", list: "Confirmed", units: 1280, area: "5.74 ha", date: "Mar 2026", img: "bayshore drive.jpg", color: "blue", c1n: "Bayshore Road (Mar 2025)", c1p: "$1,388", c2n: "Bedok Rise (Nov 2025)", c2p: "$1,330" },
-                { name: "Marina Gardens Lane", type: "Residential", list: "Reserve", units: 390, area: "0.60 ha", date: "Available", img: "Marina Gardens Lane.jpg", color: "yellow", c1n: "Marina Gdns Ln (Jun 2023)", c1p: "$1,402", c2n: "W Residences (Sep 2021)", c2p: "$1,379" },
-                { name: "Media Circle", type: "Residential", list: "Reserve", units: 520, area: "0.57 ha", date: "Available", img: "Media Circle.jpg", color: "yellow", c1n: "Media Circle (Feb 2024)", c1p: "$1,191", c2n: "Slim Barracks Rise A", c2p: "$1,246" },
-                { name: "Media Circle (Parcel B)", type: "Residential", list: "Reserve", units: 500, area: "1.00 ha", date: "Available", img: "Media Circle (Parcel B).jpg", color: "yellow", c1n: "Media Circle (Feb 2024)", c1p: "$1,191", c2n: "Slim Barracks Rise A", c2p: "$1,246" },
-                { name: "Cross Street", type: "Residential", list: "Reserve", units: 315, area: "0.23 ha", date: "Available", img: "Cross Street.jpg", color: "yellow", c1n: "W Residences (Sep 2021)", c1p: "$1,379", c2n: "One Bernam (Sep 2019)", c2p: "$1,463" },
-                { name: "Morrison Lane", type: "Residential", list: "Reserve", units: 200, area: "0.66 ha", date: "Feb 2026", img: "Morrison Lane.jpg", color: "yellow", c1n: "River Green (Jun 2024)", c1p: "$1,325", c2n: "Zion Road B (Aug 2024)", c2p: "$1,304" },
-                { name: "Kitchener Link", type: "Residential", list: "Reserve", units: 135, area: "0.39 ha", date: "Jun 2026", img: "Kitchener Link.jpg", color: "yellow", c1n: "Dorset Road (Oct 2025)", c1p: "$1,338", c2n: "Piccadilly Grand (Apr 2021)", c2p: "$1,129" },
-                { name: "Telok Ayer Street", type: "Hotel / Residential", list: "Reserve", units: 135, area: "0.42 ha", date: "Dec 2025", img: "Telok Ayer Street.jpg", color: "yellow", c1n: "W Residences (Sep 2021)", c1p: "$1,379", c2n: "One Bernam (Sep 2019)", c2p: "$1,463" },
-                { name: "Marina Gardens Crescent", type: "White Site", list: "Reserve", units: 775, area: "1.73 ha", date: "Available", img: "Marina Gardens White Site.jpg", color: "purple", c1n: "Marina Gdns Ln (Jun 2023)", c1p: "$1,402", c2n: "W Residences (Sep 2021)", c2p: "$1,379" },
-                { name: "Woodlands Avenue 2", type: "White Site", list: "Reserve", units: 440, area: "2.75 ha", date: "Available", img: "woodlands avenue 2.jpg", color: "purple", c1n: "Norwood Grand (Sep 2023)", c1p: "$904", c2n: "Woodlands Dr 17 EC (Aug 2025)", c2p: "$782" },
-                { name: "Town Hall Link", type: "White Site", list: "Reserve", units: 1200, area: "3.72 ha", date: "Mar 2026", img: "town hall link.jpg", color: "purple", c1n: "Lakeside Apts (Enbloc)", c1p: "$1,077", c2n: "Sora (Jul 2022)", c2p: "$1,023" }
+                { name: "Holland Plain", type: "Residential", list: "Confirmed", units: 280, area: "1.57 ha", date: "Feb 2026", img: "holland plain.jpg", color: "blue", 
+                  launching: [
+                    { name: "Holland Link (Jul 2025)", price: "$1,432" },
+                    { name: "Bukit Timah Rd (Nov 2025)", price: "$1,820" },
+                    { name: "Dunearn Rd (Jun 2025)", price: "$1,410" }
+                  ],
+                  immediate: [
+                    { name: "Skye at Holland (May 2024)", price: "$1,285" },
+                    { name: "Nava Grove (Nov 2023)", price: "$1,223" },
+                    { name: "8@BT (Nov 2022)", price: "$1,343", pre: true },
+                    { name: "Pinetree Hill (Jun 2022)", price: "$1,318", pre: true }
+                  ]
+                },
+                { name: "River Valley Green (Parcel C)", annotation: "near Great World MRT", type: "Residential", list: "Confirmed", units: 470, area: "1.15 ha", date: "Apr 2026", img: "river valley green parcal c.jpg", color: "blue", 
+                  launching: [
+                    { name: "River Modern (Feb 2025)", price: "$1,420" }
+                  ],
+                  immediate: [
+                    { name: "Zyon Grand (Apr 2024)", price: "$1,202" },
+                    { name: "River Green (Jun 2024)", price: "$1,325" },
+                    { name: "Promenade Peak (Aug 2024)", price: "$1,304" }
+                  ]
+                },
+                { name: "Peck Hay Road", annotation: "near Newton MRT", type: "Residential", list: "Confirmed", units: 315, area: "0.55 ha", date: "Apr 2026", img: "Peck Hay Road.jpg", color: "blue", 
+                  launching: [
+                    { name: "Bukit Timah Rd (Nov 2025)", price: "$1,820" }
+                  ],
+                  immediate: [
+                     { name: "Upper House (Jan 2024)", price: "$1,617" }
+                  ]
+                },
+                { name: "Berlayar Drive", annotation: "Telok Blangah area, Greater Southern Waterfront, near Reflection at Keppel Bay", type: "Residential", list: "Confirmed", units: 415, area: "2.54 ha", date: "May 2026", img: "berlayar drive.jpg", color: "blue", 
+                  launching: [
+                    { name: "Telok Blangah Rd (Nov 2025)", price: "$1,326" },
+                    { name: "Keppel Bay Plot 6 (2025)", price: "N/A" }
+                  ],
+                  immediate: [
+                    { name: "Newport Residences (FH)", price: "Redevelopment", pre: true },
+                    { name: "Terra Hill (FH) (Oct 2021)", price: "$1,355", pre: true }
+                  ]
+                },
+                { name: "Canberra Drive (EC)", annotation: "Near Canberra MRT", type: "EC", list: "Confirmed", units: 185, area: "1.16 ha", date: "May 2026", img: "canberra drive EC.jpg", color: "blue", 
+                  question: "if a new private new launch and new ec have similar land price, which is better?",
+                  launching: [
+                    { name: "Sembawang Rd EC (Sep 2025)", price: "$692" },
+                    { name: "Woodlands Dr 17 EC (Aug 2025)", price: "$782" },
+                    { name: "Chencharu Close GLS (Sep 2025)", price: "$980", nonEC: true }
+                  ],
+                  immediate: [
+                    { name: "Canberra Crescent Resi (Jul 2024)", price: "$793", nonEC: true },
+                    { name: "Norwood Grand (Sep 2023)", price: "$904", nonEC: true }
+                  ]
+                },
+                { name: "New Upper Changi Road", annotation: "Near Bedok MRT", type: "Residential", list: "Confirmed", units: 1040, area: "3.16 ha", date: "May 2026", img: "New Upper Changi Road.jpg", color: "blue", 
+                  launching: [
+                    { name: "Bedok Rise (Nov 2025)", price: "$1,330" },
+                    { name: "Bayshore Road (Mar 2025)", price: "$1,388" },
+                    { name: "Pinery Residence (Oct 2024)", price: "$1,004" }
+                  ],
+                  immediate: [
+                    { name: "The Continuum (FH) (Nov 2021)", price: "$1,488", pre: true },
+                    { name: "Bagnall Haus (FH) (Jan 2023)", price: "$1,106", pre: true },
+                    { name: "Grand Dunman (Jun 2022)", price: "$1,350", pre: true },
+                    { name: "Parktown Residences (Jun 2023)", price: "$885" }
+                  ]
+                },
+                { name: "Lorong Puntong", annotation: "Near Bright Hill MRT", type: "Residential", list: "Confirmed", units: 140, area: "0.43 ha", date: "Jun 2026", img: "Lorong Puntong (Sin ming).jpg", color: "blue", 
+                  launching: [
+                    { name: "Chuan Grove (Jul 2025)", price: "$1,376" }
+                  ],
+                  immediate: [
+                    { name: "Chuan Park (Jul 2022)", price: "$1,254", pre: true },
+                    { name: "Amo Residence (May 2021)", price: "$1,118", pre: true }
+                  ]
+                },
+                { name: "Sembawang Drive (EC)", type: "EC", list: "Confirmed", units: 450, area: "1.29 ha", date: "Jun 2026", img: "sembawang drive EC.jpg", color: "blue", 
+                  launching: [
+                    { name: "Sembawang Rd EC (Sep 2025)", price: "$692" },
+                    { name: "Woodlands Dr 17 EC (Aug 2025)", price: "$782" }
+                  ],
+                  immediate: [
+                    { name: "Norwood Grand (Sep 2023)", price: "$904" },
+                    { name: "Lumina Grand (Sep 2023)", price: "$626" }
+                  ]
+                },
+                { name: "Bayshore Drive", type: "Mixed Use", list: "Confirmed", units: 1280, area: "5.74 ha", date: "Mar 2026", img: "bayshore drive.jpg", color: "blue", 
+                  launching: [
+                    { name: "Bayshore Road (Mar 2025)", price: "$1,388" },
+                    { name: "Bedok Rise (Nov 2025)", price: "$1,330" }
+                  ],
+                  immediate: [
+                    { name: "Meyer Blue (Feb 2023)", price: "$1,668", pre: true },
+                    { name: "Sceneca Residence (Nov 2020)", price: "$930", pre: true }
+                  ]
+                },
+                { name: "Marina Gardens Lane", type: "Residential", list: "Reserve", units: 390, area: "0.60 ha", date: "Available", img: "Marina Gardens Lane.jpg", color: "yellow", 
+                  launching: [
+                    { name: "Marina Gdns Ln 1 (Jun 2023)", price: "$1,402" }
+                  ],
+                  immediate: [
+                    { name: "W Residences (Sep 2021)", price: "$1,379", pre: true }
+                  ]
+                },
+                { name: "Media Circle", type: "Residential", list: "Reserve", units: 520, area: "0.57 ha", date: "Available", img: "Media Circle.jpg", color: "yellow", 
+                  launching: [
+                    { name: "Media Circle (Feb 2024)", price: "$1,191" }
+                  ],
+                  immediate: [
+                    { name: "The Hill @ One-North (Sep 2021)", price: "$1,210", pre: true },
+                    { name: "Blossoms By The Park (Sep 2021)", price: "$1,246", pre: true }
+                  ]
+                },
+                { name: "Media Circle (Parcel B)", type: "Residential", list: "Reserve", units: 500, area: "1.00 ha", date: "Available", img: "Media Circle (Parcel B).jpg", color: "yellow", 
+                  launching: [
+                    { name: "Media Circle (Feb 2024)", price: "$1,191" }
+                  ],
+                  immediate: [
+                    { name: "The Hill @ One-North (Sep 2021)", price: "$1,210", pre: true },
+                    { name: "Blossoms By The Park (Sep 2021)", price: "$1,246", pre: true }
+                  ]
+                },
+                { name: "Cross Street", type: "Residential", list: "Reserve", units: 315, area: "0.23 ha", date: "Available", img: "Cross Street.jpg", color: "yellow", 
+                  launching: [
+                    // None in immediate Launching Soon category
+                  ],
+                  immediate: [
+                    { name: "W Residences (Sep 2021)", price: "$1,379", pre: true },
+                    { name: "One Bernam (Sep 2019)", price: "$1,463", pre: true }
+                  ]
+                },
+                { name: "Morrison Lane", type: "Residential", list: "Reserve", units: 200, area: "0.66 ha", date: "Feb 2026", img: "Morrison Lane.jpg", color: "yellow", 
+                  launching: [
+                    { name: "River Green (Jun 2024)", price: "$1,325" },
+                    { name: "Zion Road B (Aug 2024)", price: "$1,304" }
+                  ],
+                  immediate: [
+                    { name: "Zyon Grand (Apr 2024)", price: "$1,202" }
+                  ]
+                },
+                { name: "Kitchener Link", type: "Residential", list: "Reserve", units: 135, area: "0.39 ha", date: "Jun 2026", img: "Kitchener Link.jpg", color: "yellow", 
+                  launching: [
+                    { name: "Dorset Road (Oct 2025)", price: "$1,338" }
+                  ],
+                  immediate: [
+                    { name: "The Arcady (Jul 2022)", price: "$1,313", pre: true },
+                    { name: "Piccadilly Grand (Apr 2021)", price: "$1,129", pre: true }
+                  ]
+                },
+                { name: "Telok Ayer Street", type: "Hotel / Residential", list: "Reserve", units: 135, area: "0.42 ha", date: "Dec 2025", img: "Telok Ayer Street.jpg", color: "yellow", 
+                  launching: [],
+                  immediate: [
+                    { name: "W Residences (Sep 2021)", price: "$1,379", pre: true },
+                    { name: "One Bernam (Sep 2019)", price: "$1,463", pre: true }
+                  ]
+                },
+                { name: "Marina Gardens Crescent", type: "White Site", list: "Reserve", units: 775, area: "1.73 ha", date: "Available", img: "Marina Gardens White Site.jpg", color: "purple", 
+                  launching: [
+                    { name: "Marina Gdns Ln 1 (Jun 2023)", price: "$1,402" }
+                  ],
+                  immediate: [
+                    { name: "W Residences (Sep 2021)", price: "$1,379", pre: true }
+                  ]
+                },
+                { name: "Woodlands Avenue 2", type: "White Site", list: "Reserve", units: 440, area: "2.75 ha", date: "Available", img: "woodlands avenue 2.jpg", color: "purple", 
+                  launching: [
+                    { name: "Woodlands Dr 17 EC (Aug 2025)", price: "$782" }
+                  ],
+                  immediate: [
+                    { name: "Norwood Grand (Sep 2023)", price: "$904" }
+                  ]
+                },
+                { name: "Town Hall Link", type: "White Site", list: "Reserve", units: 1200, area: "3.72 ha", date: "Mar 2026", img: "town hall link.jpg", color: "purple", 
+                  launching: [],
+                  immediate: [
+                    { name: "The LakeGarden Res (May 2022)", price: "$1,077", pre: true },
+                    { name: "Sora (Jul 2022)", price: "$1,023", pre: true }
+                  ]
+                }
             ];
 
             const slidesContainer = document.getElementById('generated-slides');
@@ -331,6 +657,28 @@
             sites.forEach((site, index) => {
                 const badgeColor = site.list === "Confirmed" ? "bg-blue-100 text-brand-primary border-blue-200" : (site.type === "White Site" ? "bg-purple-100 text-purple-600 border-purple-200" : "bg-yellow-100 text-yellow-700 border-yellow-200");
                 
+                const launchingHTML = site.launching && site.launching.length > 0 
+                    ? site.launching.map(c => `
+                        <div class="bg-slate-50 p-2 rounded border border-slate-200 pre-badge-container">
+                            <div class="text-[10px] sm:text-xs text-slate-500 leading-tight mb-1 break-words hyphens-auto" title="${c.name}">${c.name}</div>
+                            <div class="text-sm font-bold text-slate-700">${c.price}</div>
+                            ${c.pre ? '<div class="pre-badge"></div><div class="pre-badge-text">PRE</div>' : ''}
+                            ${c.nonEC ? '<div class="private-badge"></div><div class="private-badge-text">Private</div>' : ''}
+                        </div>
+                      `).join('') 
+                    : '<div class="text-[10px] text-slate-400 italic">None</div>';
+
+                const immediateHTML = site.immediate && site.immediate.length > 0
+                    ? site.immediate.map(c => `
+                        <div class="bg-green-50 p-2 rounded border border-green-200 pre-badge-container badge-container">
+                            <div class="text-[10px] sm:text-xs text-slate-500 leading-tight mb-1 break-words hyphens-auto" title="${c.name}">${c.name}</div>
+                            <div class="text-sm font-bold text-green-700">${c.price}</div>
+                            ${c.pre ? '<div class="pre-badge"></div><div class="pre-badge-text">PRE</div>' : ''}
+                            ${c.nonEC ? '<div class="private-badge"></div><div class="private-badge-text">Private</div>' : ''}
+                        </div>
+                      `).join('')
+                    : '<div class="text-[10px] text-slate-400 italic">None</div>';
+
                 const slideHTML = `
                 <div class="slide">
                     <div class="content-card p-6 md:p-10 flex flex-col md:flex-row gap-8">
@@ -338,43 +686,50 @@
                             <div class="inline-block self-start px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border mb-4 ${badgeColor}">
                                 ${site.list} List • ${site.type}
                             </div>
-                            <h2 class="font-display text-3xl md:text-4xl text-brand-dark mb-6 leading-tight">${site.name}</h2>
+                            <h2 class="font-display text-3xl md:text-4xl text-brand-dark mb-6 leading-tight">
+                                ${site.name}
+                                ${site.annotation ? `<span class="block text-lg md:text-xl text-brand-secondary font-sans font-bold mt-1">${site.annotation}</span>` : ''}
+                            </h2>
                             <div class="space-y-3">
                                 <div class="flex items-center p-3 bg-white rounded-lg shadow-sm border-l-4 border-brand-primary">
                                     <div class="w-8 text-center mr-3"><i class="fas fa-home text-lg text-brand-primary"></i></div>
                                     <div>
-                                        <div class="text-[10px] text-slate-400 font-bold uppercase">Est. Units</div>
+                                        <div class="text-[10px] text-slate-400 font-bold uppercase slide-label-units">Est. Units</div>
                                         <div class="text-lg font-bold text-slate-800">${site.units.toLocaleString()}</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center p-3 bg-white rounded-lg shadow-sm border-l-4 border-brand-secondary">
                                     <div class="w-8 text-center mr-3"><i class="fas fa-ruler-combined text-lg text-brand-secondary"></i></div>
                                     <div>
-                                        <div class="text-[10px] text-slate-400 font-bold uppercase">Site Area</div>
+                                        <div class="text-[10px] text-slate-400 font-bold uppercase slide-label-area">Site Area</div>
                                         <div class="text-lg font-bold text-slate-800">${site.area}</div>
                                     </div>
                                 </div>
                                 <div class="flex items-center p-3 bg-white rounded-lg shadow-sm border-l-4 border-brand-accent">
                                     <div class="w-8 text-center mr-3"><i class="fas fa-calendar-alt text-lg text-yellow-500"></i></div>
                                     <div>
-                                        <div class="text-[10px] text-slate-400 font-bold uppercase">Est. Launch</div>
+                                        <div class="text-[10px] text-slate-400 font-bold uppercase slide-label-launch">Est. Launch</div>
                                         <div class="text-lg font-bold text-slate-800">${site.date}</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-6 pt-4 border-t border-slate-200 reveal delay-100">
-                                <h4 class="text-[10px] font-bold text-slate-400 uppercase mb-2">Nearby Land Trans. (psf ppr)</h4>
+                            
+                            <div class="mt-4 pt-4 border-t border-slate-200 reveal delay-100">
+                                <h4 class="text-[10px] font-bold text-slate-400 uppercase mb-2 slide-label-launching">Nearby Land Trans. (PSF PPR) - Launching Soon</h4>
                                 <div class="grid grid-cols-2 gap-3">
-                                    <div class="bg-slate-50 p-2 rounded border border-slate-200">
-                                        <div class="text-[10px] sm:text-xs text-slate-500 leading-tight mb-1 break-words hyphens-auto" title="${site.c1n}">${site.c1n}</div>
-                                        <div class="text-sm font-bold text-slate-700">${site.c1p}</div>
-                                    </div>
-                                    <div class="bg-slate-50 p-2 rounded border border-slate-200">
-                                        <div class="text-[10px] sm:text-xs text-slate-500 leading-tight mb-1 break-words hyphens-auto" title="${site.c2n}">${site.c2n}</div>
-                                        <div class="text-sm font-bold text-slate-700">${site.c2p}</div>
-                                    </div>
+                                    ${launchingHTML}
                                 </div>
                             </div>
+
+                            <div class="mt-4 pt-4 border-t border-slate-200 reveal delay-200">
+                                <h4 class="text-[10px] font-bold text-green-600 uppercase mb-2 slide-label-immediate">Nearby New Launches Avail for Immediate Booking</h4>
+                                <div class="grid grid-cols-2 gap-3">
+                                    ${immediateHTML}
+                                </div>
+                                <div class="mt-2 text-[10px] text-slate-400 italic slide-label-note">Note: Prices shown are Land Price (psf ppr)</div>
+                                <a href="https://wa.me/6591860119?text=Hi%20Kar%20Loon.%20%20I%20want%20the%20price%20list%20of%20${encodeURIComponent(site.name)}" target="_blank" class="mt-3 block w-full bg-green-600 hover:bg-green-700 text-white text-center py-2 rounded text-xs font-bold uppercase tracking-wide transition slide-btn-price">Check Current Price List</a>
+                            </div>
+
                         </div>
                         <div class="w-full md:w-2/3 relative z-10 flex flex-col justify-center reveal delay-200">
                             <div class="map-frame">
@@ -383,9 +738,13 @@
                                 </div>
                                 <img src="${site.img}" onerror="this.style.display='none'" alt="${site.name} Map">
                             </div>
-                            <div class="mascot-target" data-index="${index}"></div>
+                            ${site.question ? `<div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded shadow-sm text-sm text-slate-700 font-medium">
+                                <i class="fas fa-question-circle text-yellow-500 mr-2"></i> ${site.question}
+                            </div>` : ''}
                         </div>
-                        <div class="footer-note">Created by: Kar Loon | Contact: +65 91860119</div>
+                        <div class="footer-note">
+                            <span data-key="footer">Created by: Kar Loon | Contact: +65 91860119</span>
+                        </div>
                     </div>
                 </div>
                 `;
@@ -475,7 +834,6 @@
                 let isSummary2 = index === 2;
                 let isEnd = index === allSlides.length - 1;
 
-                // Default
                 wrapper.style.zIndex = '30';
                 wrapper.style.transform = 'scale(0.5)';
 
@@ -506,25 +864,17 @@
                     }
                     slide.appendChild(wrapper);
                 } else {
-                    // SITE SLIDES: PEEK FROM EDGES (Strictly 30-100% visible)
-                    // Strategy: Pick an edge, position relative to that edge.
-                    // Offset from edge: -35px (50% hidden) to +30px (fully inside with margin)
-                    
                     const edges = ['top', 'bottom', 'left', 'right'];
                     const edge = edges[Math.floor(Math.random() * edges.length)];
                     
-                    // Random Z-Index (30 or 1)
                     const isFront = Math.random() > 0.5;
-                    wrapper.style.zIndex = isFront ? '30' : '30'; // Force front for mobile visibility
+                    wrapper.style.zIndex = isFront ? '30' : '30'; 
                     wrapper.style.position = 'absolute';
 
                     const rot = Math.floor(Math.random() * 40) - 20;
                     wrapper.style.transform = `rotate(${rot}deg) scale(0.5)`;
 
-                    // Position along the edge (10% to 90%)
                     const pos = Math.random() * 80 + 10; 
-
-                    // Position perpendicular to edge (-30px to 10px)
                     const peek = Math.floor(Math.random() * 40) - 30; 
 
                     if (edge === 'top') {
@@ -544,7 +894,6 @@
                     slide.appendChild(wrapper);
                 }
 
-                // Random Poses
                 const armL = wrapper.querySelector('.arm-l');
                 const armR = wrapper.querySelector('.arm-r');
                 if(armL) armL.style.transform = `rotate(${Math.floor(Math.random() * 180)}deg)`;
