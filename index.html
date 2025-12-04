@@ -280,6 +280,17 @@
                 <p class="font-sans text-lg sm:text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
                     <span data-key="gls_subtitle">A Comprehensive Guide to Residential & Mixed Development Sites</span>
                 </p>
+
+                <!-- Mobile Browsing Message -->
+                <div class="mt-8 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 inline-block max-w-md mx-auto">
+                    <p class="font-sans text-cyan-300 text-base md:text-lg font-semibold">
+                        <i class="fas fa-mobile-alt mr-2"></i>
+                        <span data-key="cover_mobile_msg_1">Built for your phone. Happy browsing!</span>
+                    </p>
+                    <p class="font-sans text-slate-400 text-xs md:text-sm mt-1">
+                        <span data-key="cover_mobile_msg_2">(Rotate for optimal viewing for all pages.)</span>
+                    </p>
+                </div>
             </div>
 
             <!-- Intro Mascot - In Front of Card -->
@@ -351,6 +362,12 @@
                     <canvas id="summaryChart"></canvas>
                 </div>
             </div>
+            
+            <!-- New Mobile Browsing Message for Chart Slide -->
+            <div class="mt-4 text-center p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-800 text-sm md:text-base font-bold shadow-sm font-sans">
+                <i class="fas fa-mobile-alt mr-2"></i> <span data-key="mobile_msg_1">Built for your phone. Happy browsing!</span> <span class="block sm:inline font-normal text-blue-600" data-key="mobile_msg_2">(Rotate for optimal viewing for all pages.)</span>
+            </div>
+
             <div class="mascot-target" data-slide="summary-chart"></div>
             <div class="footer-note">
                 <span data-key="footer">Created by: Kar Loon | Contact: +65 91860119</span>
@@ -408,10 +425,14 @@
                 lbl_units: "Est. Units",
                 lbl_area: "Site Area",
                 lbl_launch: "Est. Launch",
-                lbl_launching_soon: "Nearby Land Trans. (PSF PPR) - Launching Soon",
+                lbl_launching_soon: "Nearby Land Trans. (PSF PPR) - <span class='text-red-600 bg-red-50 px-1 rounded border border-red-200'>LAUNCHING SOON</span>",
                 lbl_immediate: "Nearby New Launches Avail for Immediate Booking",
-                btn_price: "Check Current Price List",
-                note_price: "Note: Prices shown are Land Price (psf ppr)"
+                btn_price: "Click for Latest Pricing & Promo",
+                note_price: "Note: Prices shown are Land Price (psf ppr)",
+                cover_mobile_msg_1: "Built for your phone. Happy browsing!",
+                cover_mobile_msg_2: "(Rotate for optimal viewing for all pages.)",
+                mobile_msg_1: "Built for your phone. Happy browsing!",
+                mobile_msg_2: "(Rotate for optimal viewing for all pages.)"
             },
             zh: {
                 market_update: "市场快讯",
@@ -436,10 +457,14 @@
                 lbl_units: "预计单位",
                 lbl_area: "占地面积",
                 lbl_launch: "预计推出",
-                lbl_launching_soon: "附近土地交易 (每平方英尺容积率价格) - 即将推出",
+                lbl_launching_soon: "附近土地交易 (每平方英尺容积率价格) - <span class='text-red-600 bg-red-50 px-1 rounded border border-red-200'>即将推出</span>",
                 lbl_immediate: "附近可立即预订的新楼盘",
                 btn_price: "查看最新价格表",
-                note_price: "注：显示价格为土地价格 (每平方英尺容积率)"
+                note_price: "注：显示价格为土地价格 (每平方英尺容积率)",
+                cover_mobile_msg_1: "专为手机打造。浏览愉快！",
+                cover_mobile_msg_2: "（旋转屏幕以获得最佳观看体验。）",
+                mobile_msg_1: "专为手机打造。浏览愉快！",
+                mobile_msg_2: "（旋转屏幕以获得最佳观看体验。）"
             }
         };
 
@@ -463,7 +488,7 @@
             document.querySelectorAll('.slide-label-units').forEach(el => el.innerText = t.lbl_units);
             document.querySelectorAll('.slide-label-area').forEach(el => el.innerText = t.lbl_area);
             document.querySelectorAll('.slide-label-launch').forEach(el => el.innerText = t.lbl_launch);
-            document.querySelectorAll('.slide-label-launching').forEach(el => el.innerText = t.lbl_launching_soon);
+            document.querySelectorAll('.slide-label-launching').forEach(el => el.innerHTML = t.lbl_launching_soon); // Using innerHTML to support styling
             document.querySelectorAll('.slide-label-immediate').forEach(el => el.innerText = t.lbl_immediate);
             document.querySelectorAll('.slide-label-note').forEach(el => el.innerText = t.note_price);
             document.querySelectorAll('.slide-btn-price').forEach(el => el.innerText = t.btn_price);
@@ -564,7 +589,7 @@
                     { name: "Canberra Crescent Resi (Jul 2024)", price: "$793", nonEC: true }
                   ]
                 },
-                { name: "Bayshore Drive", annotation: "Near Bedok South MRT", type: "Mixed Use", list: "Confirmed", units: 1280, area: "5.74 ha", date: "Mar 2026", img: "bayshore drive.jpg", color: "blue", 
+                { name: "Bayshore Drive", type: "Mixed Use", list: "Confirmed", units: 1280, area: "5.74 ha", date: "Mar 2026", img: "bayshore drive.jpg", color: "blue", 
                   launching: [
                     { name: "Bayshore Road (Mar 2025)", price: "$1,388" },
                     { name: "Bedok Rise (Nov 2025)", price: "$1,330" }
@@ -576,7 +601,7 @@
                     { name: "Grand Dunman (Jun 2022)", price: "$1,350", pre: true }
                   ]
                 },
-                { name: "Marina Gardens Lane", annotation: "Near Marina South MRT (U/C)", type: "Residential", list: "Reserve", units: 390, area: "0.60 ha", date: "Available", img: "Marina Gardens Lane.jpg", color: "yellow", 
+                { name: "Marina Gardens Lane", type: "Residential", list: "Reserve", units: 390, area: "0.60 ha", date: "Available", img: "Marina Gardens Lane.jpg", color: "yellow", 
                   launching: [
                     { name: "Newport Residence (FH)", price: "Redevelopment" }
                   ],
@@ -606,7 +631,7 @@
                     { name: "The Hill @ One-North (Sep 2021)", price: "$1,210", pre: true }
                   ]
                 },
-                { name: "Cross Street", annotation: "Near Telok Ayer MRT", type: "Residential", list: "Reserve", units: 315, area: "0.23 ha", date: "Available", img: "Cross Street.jpg", color: "yellow", 
+                { name: "Cross Street", type: "Residential", list: "Reserve", units: 315, area: "0.23 ha", date: "Available", img: "Cross Street.jpg", color: "yellow", 
                   launching: [
                     { name: "Newport Residences (FH)", price: "Redevelopment" }
                   ],
@@ -672,6 +697,7 @@
             ];
 
             const slidesContainer = document.getElementById('generated-slides');
+            const waBase = "https://wa.me/6591860119?text=Hi%20Kar%20Loon!!%20%F0%9F%91%8B%F0%9F%98%84%0ASaw%20your%20%E2%80%9CClick%20for%20Latest%20Pricing%20%26%20Promo%20Alerts%E2%80%9D%20%E2%86%92%20I%20clicked%20faster%20than%20my%20mom%20forwards%20fake%20news%20%F0%9F%A4%A3%0AHit%20me%20with%20the%20latest%20price%20%2B%20any%20crazy%20deals%20lah!%0AProject%20I%20want%3A%20";
             
             sites.forEach((site, index) => {
                 const badgeColor = site.list === "Confirmed" ? "bg-blue-100 text-brand-primary border-blue-200" : (site.type === "White Site" ? "bg-purple-100 text-purple-600 border-purple-200" : "bg-yellow-100 text-yellow-700 border-yellow-200");
@@ -696,6 +722,8 @@
                         </div>
                       `).join('')
                     : '<div class="text-[10px] text-slate-400 italic">None</div>';
+
+                const waLink = `${waBase}${encodeURIComponent(site.name)}`;
 
                 const slideHTML = `
                 <div class="slide">
@@ -745,7 +773,7 @@
                                     ${immediateHTML}
                                 </div>
                                 <div class="mt-2 text-[10px] text-slate-400 italic slide-label-note">Note: Prices shown are Land Price (psf ppr)</div>
-                                <a href="https://wa.me/6591860119?text=Hi%20Kar%20Loon.%20%20I%20want%20the%20price%20list%20of%20${encodeURIComponent(site.name)}" target="_blank" class="mt-3 block w-full bg-green-600 hover:bg-green-700 text-white text-center py-2 rounded text-xs font-bold uppercase tracking-wide transition slide-btn-price">Check Current Price List</a>
+                                <a href="${waLink}" target="_blank" class="mt-3 block w-full bg-green-600 hover:bg-green-700 text-white text-center py-2 rounded text-xs font-bold uppercase tracking-wide transition slide-btn-price">Click for Latest Pricing & Promo</a>
                             </div>
 
                         </div>
