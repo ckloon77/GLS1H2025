@@ -73,6 +73,11 @@
             flex-direction: column;
         }
 
+        /* Custom Scrollbar for Content Areas */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
         /* --- ANIMATIONS --- */
         .reveal {
             opacity: 0;
@@ -161,7 +166,7 @@
         .map-frame {
             width: 100%;
             max-width: 640px; 
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 1 / 1;
             border-radius: 16px;
             overflow: hidden;
             border: 8px solid white;
@@ -541,7 +546,7 @@
                     { name: "Pinetree Hill (Jun 2022)", price: "$1,318", pre: true }
                   ]
                 },
-                { name: "River Valley Green (Parcel C)", annotation: "near Great World MRT", type: "Residential", list: "Confirmed", units: 470, area: "1.15 ha", date: "Apr 2026", img: "river valley green parcal c.jpg", color: "blue", 
+                { name: "River Valley Green (Parcel C)", type: "Residential", list: "Confirmed", units: 470, area: "1.15 ha", date: "Apr 2026", img: "river valley green parcal c.jpg", color: "blue", 
                   keyPoints: [
                       "Prime District 9 city fringe",
                       "Near Great World MRT, Orchard Road, Singapore River parks",
@@ -558,7 +563,7 @@
                     { name: "Promenade Peak (Aug 2024)", price: "$1,304" }
                   ]
                 },
-                { name: "Peck Hay Road", annotation: "near Newton MRT", type: "Residential", list: "Confirmed", units: 315, area: "0.55 ha", date: "Apr 2026", img: "Peck Hay Road.jpg", color: "blue", 
+                { name: "Peck Hay Road", type: "Residential", list: "Confirmed", units: 315, area: "0.55 ha", date: "Apr 2026", img: "Peck Hay Road.jpg", color: "blue", 
                   keyPoints: [
                       "Newton urban village transformation (URA Master Plan 2025)",
                       "Near Newton MRT, Orchard, Novena healthcare",
@@ -573,7 +578,7 @@
                      { name: "The Orie (Nov 2023)", price: "$1,360" }
                   ]
                 },
-                { name: "Berlayar Drive", annotation: "Telok Blangah area, Greater Southern Waterfront, near Reflection at Keppel Bay", type: "Residential", list: "Confirmed", units: 415, area: "2.54 ha", date: "May 2026", img: "berlayar drive.jpg", color: "blue", 
+                { name: "Berlayar Drive", type: "Residential", list: "Confirmed", units: 415, area: "2.54 ha", date: "May 2026", img: "berlayar drive.jpg", color: "blue", 
                   keyPoints: [
                       "Greater Southern Waterfront location",
                       "Sea views over Keppel Bay",
@@ -590,7 +595,7 @@
                     { name: "Terra Hill (FH) (Oct 2021)", price: "$1,355", pre: true }
                   ]
                 },
-                { name: "Canberra Drive (EC)", annotation: "Near Canberra MRT", type: "EC", list: "Confirmed", units: 185, area: "1.16 ha", date: "May 2026", img: "canberra drive EC.jpg", color: "blue", 
+                { name: "Canberra Drive (EC)", type: "EC", list: "Confirmed", units: 185, area: "1.16 ha", date: "May 2026", img: "canberra drive EC.jpg", color: "blue", 
                   question: "if a new private new launch and new ec have similar land price, which is better?",
                   keyPoints: [
                       "Quieter northern pocket with greenery/waterfront",
@@ -609,7 +614,7 @@
                     { name: "Norwood Grand (Sep 2023)", price: "$904", nonEC: true }
                   ]
                 },
-                { name: "New Upper Changi Road", annotation: "Near Bedok MRT", type: "Residential", list: "Confirmed", units: 1040, area: "3.16 ha", date: "May 2026", img: "New Upper Changi Road.jpg", color: "blue", 
+                { name: "New Upper Changi Road", type: "Residential", list: "Confirmed", units: 1040, area: "3.16 ha", date: "May 2026", img: "New Upper Changi Road.jpg", color: "blue", 
                   keyPoints: [
                       "Mature Bedok heartland",
                       "Walking distance to Bedok MRT, mall, hawker centre, library",
@@ -629,7 +634,7 @@
                     { name: "Parktown Residences (Jun 2023)", price: "$885" }
                   ]
                 },
-                { name: "Lorong Puntong", annotation: "Near Bright Hill MRT", type: "Residential", list: "Confirmed", units: 140, area: "0.43 ha", date: "Jun 2026", img: "Lorong Puntong (Sin ming).jpg", color: "blue", 
+                { name: "Lorong Puntong", type: "Residential", list: "Confirmed", units: 140, area: "0.43 ha", date: "Jun 2026", img: "Lorong Puntong (Sin ming).jpg", color: "blue", 
                   keyPoints: [
                       "Near Bright Hill MRT (Cross Island Line)",
                       "Opposite Ai Tong School",
@@ -669,7 +674,7 @@
                     { name: "Canberra Crescent Resi (Jul 2024)", price: "$793", nonEC: true }
                   ]
                 },
-                { name: "Bayshore Drive", annotation: "Near Bedok South MRT", type: "Mixed Use", list: "Confirmed", units: 1280, area: "5.74 ha", date: "Mar 2026", img: "bayshore drive.jpg", color: "blue", 
+                { name: "Bayshore Drive", type: "Mixed Use", list: "Confirmed", units: 1280, area: "5.74 ha", date: "Mar 2026", img: "bayshore drive.jpg", color: "blue", 
                   keyPoints: [
                       "Integrated with Bedok South MRT",
                       "Near East Coast Park, Temasek Primary",
@@ -689,7 +694,7 @@
                     { name: "Grand Dunman (Jun 2022)", price: "$1,350", pre: true }
                   ]
                 },
-                { name: "Marina Gardens Lane", annotation: "Near Marina South MRT (U/C)", type: "Residential", list: "Reserve", units: 390, area: "0.60 ha", date: "Available", img: "Marina Gardens Lane.jpg", color: "yellow", 
+                { name: "Marina Gardens Lane", type: "Residential", list: "Reserve", units: 390, area: "0.60 ha", date: "Available", img: "Marina Gardens Lane.jpg", color: "yellow", 
                   keyPoints: [
                       "Marina South area",
                       "Retail cap at 150 sq m",
@@ -716,7 +721,8 @@
                   immediate: [
                     { name: "Bloomsbury Residences (Jan 2024)", price: "$1,191" },
                     { name: "LyndenWoods", price: "Redevelopment" },
-                    { name: "Blossoms By The Park (Sep 2021)", price: "$1,246", pre: true }
+                    { name: "Blossoms By The Park (Sep 2021)", price: "$1,246", pre: true },
+                    { name: "The Hill @ One-North (Sep 2021)", price: "$1,210", pre: true }
                   ]
                 },
                 { name: "Media Circle (Parcel B)", type: "Residential", list: "Reserve", units: 500, area: "1.00 ha", date: "Available", img: "Media Circle (Parcel B).jpg", color: "yellow", 
@@ -730,10 +736,11 @@
                   immediate: [
                     { name: "Bloomsbury Residences (Jan 2024)", price: "$1,191" },
                     { name: "LyndenWoods", price: "Redevelopment" },
-                    { name: "Blossoms By The Park (Sep 2021)", price: "$1,246", pre: true }
+                    { name: "Blossoms By The Park (Sep 2021)", price: "$1,246", pre: true },
+                    { name: "The Hill @ One-North (Sep 2021)", price: "$1,210", pre: true }
                   ]
                 },
-                { name: "Cross Street", annotation: "Near Telok Ayer MRT", type: "Residential", list: "Reserve", units: 315, area: "0.23 ha", date: "Available", img: "Cross Street.jpg", color: "yellow", 
+                { name: "Cross Street", type: "Residential", list: "Reserve", units: 315, area: "0.23 ha", date: "Available", img: "Cross Street.jpg", color: "yellow", 
                   keyPoints: [
                       "Long-stay serviced apartments",
                       "Min commercial 500 sq m",
@@ -765,7 +772,7 @@
                     { name: "Promenade Peak (Aug 2024)", price: "$1,304" }
                   ]
                 },
-                { name: "Kitchener Link", annotation: "Near Farrer Park MRT", type: "Residential", list: "Reserve", units: 135, area: "0.39 ha", date: "Jun 2026", img: "Kitchener Link.jpg", color: "yellow", 
+                { name: "Kitchener Link", type: "Residential", list: "Reserve", units: 135, area: "0.39 ha", date: "Jun 2026", img: "Kitchener Link.jpg", color: "yellow", 
                   keyPoints: [
                       "New site",
                       "Reduced serviced apartments quota",
@@ -778,7 +785,7 @@
                     { name: "The Arcady (Jul 2022)", price: "$1,313", pre: true }
                   ]
                 },
-                { name: "Telok Ayer Street", annotation: "Near Telok Ayer MRT", type: "Hotel / Residential", list: "Reserve", units: 135, area: "0.42 ha", date: "Dec 2025", img: "Telok Ayer Street.jpg", color: "yellow", 
+                { name: "Telok Ayer Street", type: "Hotel / Residential", list: "Reserve", units: 135, area: "0.42 ha", date: "Dec 2025", img: "Telok Ayer Street.jpg", color: "yellow", 
                   keyPoints: [
                       "Min long-stay serviced apartments 6,200 sq m",
                       "Carried over",
@@ -790,7 +797,7 @@
                     { name: "One Bernam (Sep 2019)", price: "$1,463", pre: true }
                   ]
                 },
-                { name: "Marina Gardens Crescent", annotation: "Near Marina South MRT (U/C)", type: "White Site", list: "Reserve", units: 775, area: "1.73 ha", date: "Available", img: "Marina Gardens White Site.jpg", color: "purple", 
+                { name: "Marina Gardens Crescent", type: "White Site", list: "Reserve", units: 775, area: "1.73 ha", date: "Available", img: "Marina Gardens White Site.jpg", color: "purple", 
                   keyPoints: [
                       "Retail cap 6,000 sq m + min 500 sq m childcare",
                       "Mixed-use in growing Marina area"
@@ -803,7 +810,7 @@
                     { name: "W Residences (Sep 2021)", price: "$1,379", pre: true }
                   ]
                 },
-                { name: "Woodlands Avenue 2", annotation: "Near Woodlands MRT", type: "White Site", list: "Reserve", units: 440, area: "2.75 ha", date: "Available", img: "woodlands avenue 2.jpg", color: "purple", 
+                { name: "Woodlands Avenue 2", type: "White Site", list: "Reserve", units: 440, area: "2.75 ha", date: "Available", img: "woodlands avenue 2.jpg", color: "purple", 
                   keyPoints: [
                       "Min office 45,000 sq m, retail cap 33,000 sq m",
                       "Supports northern decentralization"
@@ -815,7 +822,7 @@
                     { name: "Norwood Grand (Sep 2023)", price: "$904" }
                   ]
                 },
-                { name: "Town Hall Link", annotation: "Near Jurong East MRT", type: "White Site", list: "Reserve", units: 1200, area: "3.72 ha", date: "Mar 2026", img: "town hall link.jpg", color: "purple", 
+                { name: "Town Hall Link", type: "White Site", list: "Reserve", units: 1200, area: "3.72 ha", date: "Mar 2026", img: "town hall link.jpg", color: "purple", 
                   keyPoints: [
                       "New JLD carve-out",
                       "Min office 40,000 sq m + 800 sq m childcare",
